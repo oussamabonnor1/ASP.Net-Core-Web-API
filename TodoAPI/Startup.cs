@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using TodoAPI.Models;
 
 namespace TodoAPI
 {
@@ -15,6 +17,10 @@ namespace TodoAPI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<TodoContext>(opt =>
+            {
+                opt.UseInMemoryDatabase("TodoList");
+            });
             services.AddMvc();
         }
 
@@ -25,7 +31,8 @@ namespace TodoAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
             app.UseMvc();
 
             app.Run(async (context) =>
