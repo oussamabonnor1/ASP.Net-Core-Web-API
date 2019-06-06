@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using TodoAPI.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,7 +13,7 @@ namespace TodoAPI.Controller
     [Route("api/[controller]")]
     public class ValuesController : ControllerBase
     {
-        // GET: api/<controller>
+        //GET: api/<controller>
         [HttpGet]
         public IEnumerable<string> Get()
         {
@@ -20,15 +22,21 @@ namespace TodoAPI.Controller
 
         // GET api/<controller>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id,[FromBody] string query)
         {
-            return "value requested: " + id;
+            return Ok(new TodoItem {id = id, status = true, task = query });
         }
 
         // POST api/<controller>
         [HttpPost]
-        public void Post([FromBody]string value)
+        public IActionResult Post([FromBody] TodoItem value)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            return CreatedAtAction("Get", new {id= value.id} ,value);
         }
 
         // PUT api/<controller>/5
