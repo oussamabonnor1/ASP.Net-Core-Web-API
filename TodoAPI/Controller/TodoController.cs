@@ -18,15 +18,15 @@ namespace TodoAPI.Controller
         {
             this.context = context;
 
-            if (this.context.toDoItems.Count() == 0)
-            {
-                // Create a new TodoItem if collection is empty,
-                // which means you can't delete all TodoItems.
-                this.context.toDoItems.Add(new TodoItem { id = 1, status = false, task = "workout" });
-                this.context.toDoItems.Add(new TodoItem { id = 2, status = false, task = "code" });
-                this.context.toDoItems.Add(new TodoItem { id = 3, status = false, task = "sleep" });
-                this.context.SaveChanges();
-            }
+            //if (this.context.toDoItems.Count() == 0)
+            //{
+            //    // Create a new TodoItem if collection is empty,
+            //    // which means you can't delete all TodoItems.
+            //    this.context.toDoItems.Add(new TodoItem { id = 1, status = false, task = "workout" });
+            //    this.context.toDoItems.Add(new TodoItem { id = 2, status = false, task = "code" });
+            //    this.context.toDoItems.Add(new TodoItem { id = 3, status = false, task = "sleep" });
+            //    this.context.SaveChanges();
+            //}
         }
 
         //GET: api/<controller>
