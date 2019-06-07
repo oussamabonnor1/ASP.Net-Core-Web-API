@@ -10,11 +10,11 @@ using TodoAPI.Models;
 namespace TodoAPI.Controller
 {
     [Route("api/[controller]")]
-    public class ValuesController : ControllerBase
+    public class TodoController : ControllerBase
     {
         public TodoContext context;
 
-        public ValuesController(TodoContext context)
+        public TodoController(TodoContext context)
         {
             this.context = context;
 
