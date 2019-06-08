@@ -25,6 +25,7 @@ namespace TodoAPI
             services.AddDbContext<TodoContext>(opt =>
             {
                 opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
+                //opt.UseInMemoryDatabase("TodoList");
             });
             services.AddMvc();
         }
