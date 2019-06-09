@@ -37,6 +37,7 @@ namespace TodoAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseMvc();
 
